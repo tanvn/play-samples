@@ -1,0 +1,6 @@
+->         /v1/posts               v1.post.PostRouter
+
+GET   /db/                         v1.post.DbController.index
+GET   /db/scores/:id               v1.post.DbController.find(id: Long)
+GET   /db/goals/:id                v1.post.DbController.findGoal(id: Long)
+GET   /users                       v1.post.DbController.users

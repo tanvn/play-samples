@@ -1,0 +1,84 @@
+<configuration>
+
+  <conversionRule conversionWord="coloredLevel" converterClass="play.api.libs.logback.ColoredLevel" />
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <!-- JSONのログ確認用のencoder -->
+    <!--<encoder class="net.logstash.logback.encoder.LogstashEncoder">-->
+    <!--<customFields>{"appname":"api"}</customFields>-->
+    <!--</encoder>-->
+
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS,Asia/Tokyo} [%highlight(%-6.6level)] [%.13t] [%-30.30logger] - %msg %n</pattern>
+    </encoder>
+
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+      <level>ERROR</level>
+      <onMatch>DENY</onMatch>
+      <onMismatch>NEUTRAL</onMismatch>
+    </filter>
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+      <level>WARN</level>
+      <onMatch>DENY</onMatch>
+      <onMismatch>ACCEPT</onMismatch>
+    </filter>
+  </appender>
+
+  <appender name="STDOUT_ERROR" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%red(%d{HH:mm:ss.SSS,Asia/Tokyo} [%-6.6level] [%.13t] [%-30.30logger] - %msg %n%xException)</pattern>
+    </encoder>
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+      <level>ERROR</level>
+      <onMatch>ACCEPT</onMatch>
+      <onMismatch>DENY</onMismatch>
+    </filter>
+  </appender>
+
+  <appender name="STDOUT_WARN" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%yellow(%d{HH:mm:ss.SSS,Asia/Tokyo} [%-6.6level] [%.13t] [%-30.30logger] - %msg %n%xException)</pattern>
+    </encoder>
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+      <level>WARN</level>
+      <onMatch>ACCEPT</onMatch>
+      <onMismatch>DENY</onMismatch>
+    </filter>
+  </appender>
+
+  <appender name="STDOUT_ACCESS_LOG" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%gray(%d{HH:mm:ss.SSS,Asia/Tokyo} [%6.6level] [%.13t] [%-30.30logger] - %msg %n)</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="ASYNCSTDOUT" class="ch.qos.logback.classic.AsyncAppender">
+    <appender-ref ref="STDOUT" />
+  </appender>
+
+  <appender name="ASYNCSTDOUT_ERROR" class="ch.qos.logback.classic.AsyncAppender">
+    <appender-ref ref="STDOUT_ERROR" />
+  </appender>
+
+  <appender name="ASYNCSTDOUT_WARN" class="ch.qos.logback.classic.AsyncAppender">
+    <appender-ref ref="STDOUT_WARN" />
+  </appender>
+
+  <logger name="access-log" level="INFO" additivity="FALSE">
+    <appender-ref ref="STDOUT_ACCESS_LOG" />
+  </logger>
+
+  <logger name="co.hrmos" level="DEBUG" />
+
+  <logger name="org.jdbcdslog.ConnectionLogger" level="OFF"  /> <!-- Won' log connections -->
+  <logger name="org.jdbcdslog.StatementLogger"  level="INFO" /> <!-- Will log all statements -->
+  <logger name="org.jdbcdslog.ResultSetLogger"  level="OFF"  /> <!-- Won' log result sets -->
+
+  <root level="DEBUG">
+    <appender-ref ref="ASYNCSTDOUT" />
+    <appender-ref ref="ASYNCSTDOUT_ERROR" />
+    <appender-ref ref="ASYNCSTDOUT_WARN" />
+  </root>
+
+</configuration>

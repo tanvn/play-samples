@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="sbt: io.lemonlabs:scala-uri_2.13:1.4.10:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/io.lemonlabs/scala-uri_2.13/jars/scala-uri_2.13-1.4.10.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/io.lemonlabs/scala-uri_2.13/srcs/scala-uri_2.13-1.4.10-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

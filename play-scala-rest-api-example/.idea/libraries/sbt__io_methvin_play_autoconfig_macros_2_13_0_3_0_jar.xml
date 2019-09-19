@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="sbt: io.methvin.play:autoconfig-macros_2.13:0.3.0:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/io.methvin.play/autoconfig-macros_2.13/jars/autoconfig-macros_2.13-0.3.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/io.methvin.play/autoconfig-macros_2.13/srcs/autoconfig-macros_2.13-0.3.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
