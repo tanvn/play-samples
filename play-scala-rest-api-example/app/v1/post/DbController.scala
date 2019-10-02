@@ -26,7 +26,7 @@ class DbController @Inject()(db: Database, val controllerComponents: ControllerC
         outString += rs.getString("testkey")
       }
     } finally {
-      println("close connection")
+      println("close connection 2222")
       conn.close()
     }
     Ok(outString)
