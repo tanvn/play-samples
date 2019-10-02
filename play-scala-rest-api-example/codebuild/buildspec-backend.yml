@@ -5,6 +5,8 @@ phases:
     runtime-versions:
       java: openjdk8
     commands:
+      - chmod a+x ./play-scala-rest-api-example/codebuild/codebuild-extras.sh
+      - ./play-scala-rest-api-example/codebuild/codebuild-extras.sh
       - chmod a+x ./play-scala-rest-api-example/codebuild/backend.sh
       - ./play-scala-rest-api-example/codebuild/backend.sh install
   pre_build:
