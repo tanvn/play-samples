@@ -15,7 +15,7 @@ class DbController @Inject()(db: Database, val controllerComponents: ControllerC
   val g = Goals.g
 
   def index = Action {
-    var outString = "Number is "
+    var outString = "Number is : "
     val conn      = db.getConnection()
 
     try {
