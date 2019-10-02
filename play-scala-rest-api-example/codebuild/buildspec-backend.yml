@@ -1,0 +1,33 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - ./play-scala-rest-api-example/codebuild/backend.sh install
+  pre_build:
+    commands:
+      #- /usr/local/bin/dockerd-entrypoint.sh
+      - export LC_ALL="en_US.UTF-8"
+      - locale-gen en_US en_US.UTF-8
+      - dpkg-reconfigure locales
+      - git rev-parse HEAD || true
+      - git show --pretty=full -s || true
+      - env
+      - ./play-scala-rest-api-example/codebuild/backend.sh pre_build
+  build:
+    commands:
+      - ./play-scala-rest-api-example/codebuild/backend.sh build
+    finally:
+      - git rev-parse HEAD || true
+      - git show --pretty=full -s || true
+      - env
+  post_build:
+    commands:
+      - bash -c "if [ /"$CODEBUILD_BUILD_SUCCEEDING/" == /"0/" ]; then exit 1; fi"
+      - ./play-scala-rest-api-example/codebuild/backend.sh post_build
+
+cache:
+  paths:
+    - '/root/.sbt/**/*'
+    - '/root/.ivy2/**/*'
+    - '/root/.coursier/**/*'

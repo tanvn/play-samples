@@ -19,15 +19,16 @@ lazy val root = (project in file("."))
       "io.lemonlabs" %% "scala-uri" % "1.4.10",
       "net.codingwell" %% "scala-guice" % "4.2.5",
       "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.3" % Test,
-//      "com.datadoghq" % "dd-java-agent" % "0.33.0",
       "com.datadoghq" % "dd-trace-api" % "0.33.0",
       "org.postgresql" % "postgresql" % "42.2.5",
       "org.scalikejdbc" %% "scalikejdbc" % "3.3.5",
+      "org.scalikejdbc" %% "scalikejdbc-test"   % "3.3.5"   % "test",
       "org.scalikejdbc" %% "scalikejdbc-config" % "3.3.5",
       "com.h2database" % "h2" % "1.4.199",
       "ch.qos.logback" % "logback-classic" % "1.2.3",
       "org.hsqldb" % "hsqldb" % "2.3.2",
-      "io.methvin.play" %% "autoconfig-macros" % "0.3.0"
+      "io.methvin.play" %% "autoconfig-macros" % "0.3.0",
+      "org.specs2" %% "specs2-core" % "4.6.0" % "test"
     ),
   ).settings(
   javaAgents += "com.datadoghq" % "dd-java-agent" % "0.33.0"
