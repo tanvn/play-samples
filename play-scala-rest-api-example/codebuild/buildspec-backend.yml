@@ -2,6 +2,8 @@ version: 0.2
 
 phases:
   install:
+    runtime-versions:
+      java: corretto8
     commands:
       - ./play-scala-rest-api-example/codebuild/backend.sh install
   pre_build:
