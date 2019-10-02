@@ -10,48 +10,77 @@ DB_HOST=${DB_HOST:-"postgres"}
 DB_NAME=${DB_NAME:-"prf_api_ut"}
 DB_USER=${DB_USER:-"postgres"}
 
+
+function shouldTriggerBuild(){
+	[[ $CODEBUILD_GIT_BRANCH == *"/be/"* ]]
+
+}
 #
 # install java (only print version)
 #
 function install_java() {
-    echo "Java version: $(java -version)"
+    if shouldTriggerBuild; then
+        echo "Java version: $(java -version)"
+    else
+       echo "skip install_java, not target"
+    fi
 }
 
 #
 # Download salmonflake lib jar from s3
 #
 function pre_build_deps() {
-    echo "pre_build_deps"
-}
+    if shouldTriggerBuild; then
+       echo "pre_build_deps"
+    else
+       echo "skip pre_build_deps, not target"
+    fi
+ }
 
 #
 # Run docker containers for unittest
 #
 function pre_build_run_docker() {
-    echo "pre_build_run_docker"
+    if shouldTriggerBuild; then
+       echo "pre_build_flyway"
+    else
+       echo "skip pre_build_run_docker, not target"
+    fi
 }
 
 #
 # Run flyway migration before run sbt test
 #
 function pre_build_flyway() {
-    echo "pre_build_flyway"
+    if shouldTriggerBuild; then
+       echo "pre_build_flyway"
+    else
+       echo "skip pre_build_flyway, not target"
+    fi
 }
 
 #
 # build sbt project and run tests, send coverage report to Codecov
 #
 function build() {
-    cd "$CODEBUILD_SRC_DIR"
-    cd play-scala-rest-api-example
-    ./sbt test
+    if shouldTriggerBuild; then
+        cd "$CODEBUILD_SRC_DIR"
+        cd play-scala-rest-api-example
+        ./sbt test
+    else
+    	echo "skip build, not target"
+    fi
 }
 
 #
 # Upload coverage report to codecov.io
 #
 function upload_coverage_report() {
-    echo "upload_coverage_report"
+    if shouldTriggerBuild; then
+        echo "upload_coverage_report"
+    else
+        echo "skip upload_coverage_report, not target"
+    fi
 }
 
 
