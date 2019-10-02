@@ -5,6 +5,7 @@ phases:
     runtime-versions:
       java: corretto8
     commands:
+      - chmod a+x ./play-scala-rest-api-example/codebuild/backend.sh
       - ./play-scala-rest-api-example/codebuild/backend.sh install
   pre_build:
     commands:
