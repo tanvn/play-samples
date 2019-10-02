@@ -10,7 +10,11 @@ DB_HOST=${DB_HOST:-"postgres"}
 DB_NAME=${DB_NAME:-"prf_api_ut"}
 DB_USER=${DB_USER:-"postgres"}
 
-( exec "./play-scala-rest-api-example/codebuild/codebuild-extras.sh" )
+export CODEBUILD_GIT_BRANCH="$(git symbolic-ref HEAD --short 2>/dev/null)"
+if [ "$CODEBUILD_GIT_BRANCH" = "" ] ; then
+  CODEBUILD_GIT_BRANCH="$(git branch -a --contains HEAD | sed -n 2p | awk '{ printf $1 }')";
+  export CODEBUILD_GIT_BRANCH=${CODEBUILD_GIT_BRANCH#remotes/origin/};
+fi
 
 function shouldTriggerBuild(){
 	[[ $CODEBUILD_GIT_BRANCH == *"/be/"* ]]
