@@ -22,7 +22,7 @@ lazy val root = (project in file("."))
       "com.datadoghq" % "dd-trace-api" % "0.33.0",
       "org.postgresql" % "postgresql" % "42.2.5",
       "org.scalikejdbc" %% "scalikejdbc" % "3.3.5",
-//      "org.scalikejdbc" %% "scalikejdbc-test"   % "3.3.5"   % "test",
+      "org.scalikejdbc" %% "scalikejdbc-test"   % "3.3.5"   % "test",
       "org.scalikejdbc" %% "scalikejdbc-config" % "3.3.5",
       "com.h2database" % "h2" % "1.4.199",
       "ch.qos.logback" % "logback-classic" % "1.2.3",
