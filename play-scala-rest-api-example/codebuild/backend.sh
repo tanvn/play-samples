@@ -29,6 +29,7 @@ function pre_build_deps() {
 # Run docker containers for unittest
 #
 function pre_build_run_docker() {
+    echo "pre_build_run_docker"
 }
 
 #
@@ -51,6 +52,7 @@ function build() {
 # Upload coverage report to codecov.io
 #
 function upload_coverage_report() {
+    echo "upload_coverage_report"
 }
 
 
