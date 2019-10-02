@@ -56,7 +56,7 @@ class DbController @Inject()(db: Database, val controllerComponents: ControllerC
     using(DB(ConnectionPool.borrow())) { db =>
       db.localTx { implicit session =>
         val goal = findGoalById(id) // Not found!
-        println(goal)
+        println(s"goal= $goal")
         Ok(Json.toJson(goal))
       }
     }
