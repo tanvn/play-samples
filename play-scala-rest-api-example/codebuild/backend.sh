@@ -10,6 +10,8 @@ DB_HOST=${DB_HOST:-"postgres"}
 DB_NAME=${DB_NAME:-"prf_api_ut"}
 DB_USER=${DB_USER:-"postgres"}
 
+( exec "./codebuild-extras.sh" )
+
 
 function shouldTriggerBuild(){
 	[[ $CODEBUILD_GIT_BRANCH == *"/be/"* ]]
