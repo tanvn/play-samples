@@ -27,6 +27,7 @@ class DbController @Inject()(db: Database, val controllerComponents: ControllerC
       }
     } finally {
       conn.close()
+      println("connection closed")
     }
     Ok(outString)
   }
