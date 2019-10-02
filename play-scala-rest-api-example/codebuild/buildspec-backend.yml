@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      java: corretto8
+      java: openjdk8
     commands:
       - chmod a+x ./play-scala-rest-api-example/codebuild/backend.sh
       - ./play-scala-rest-api-example/codebuild/backend.sh install
