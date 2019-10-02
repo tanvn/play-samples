@@ -32,7 +32,7 @@ class DbController @Inject()(db: Database, val controllerComponents: ControllerC
   }
 
   def users = Action {
-    var outString = "Number is "
+    var outString = "Number of users is "
     val conn      = db.getConnection()
     println(s"datasource = ${db.dataSource}")
 
